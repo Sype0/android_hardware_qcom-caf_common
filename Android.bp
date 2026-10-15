@@ -3,10 +3,25 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
-// Header-only modules that QCOM HALs (display, dataservices, ...) depend on.
+// Header-only modules that QCOM HALs (audio, display, dataservices, ...) depend on.
 // The device's prebuilt kernel provides qti_display_kernel_headers itself.
 cc_library_headers {
+    name: "audio_kernel_headers",
+    defaults: ["generated_kernel_header_defaults"],
+}
+
+cc_library_headers {
+    name: "qti_audio_kernel_uapi",
+    defaults: ["generated_kernel_header_defaults"],
+}
+
+cc_library_headers {
     name: "qti_kernel_headers",
+    defaults: ["generated_kernel_header_defaults"],
+}
+
+cc_library_headers {
+    name: "smmu_proxy_uapi_header",
     defaults: ["generated_kernel_header_defaults"],
 }
 
