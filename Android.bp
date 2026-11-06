@@ -922,3 +922,20 @@ prebuilt_hidl_interfaces {
         "vendor.qti.hardware.wigig.netperftuner@1.0::INetPerfTuner",
     ],
 }
+
+// AOSP's frameworks/opt/net/wifi/libwifi_hal references a global cc_defaults
+// named "libwifi-hal-qcom" for BOARD_WLAN_DEVICE=qcwcn, but the CAF wlan tree
+// only defines it inside the hardware/qcom-caf/wlan soong namespace, which the
+// global libwifi-hal cannot see (LineageOS patches around this). Provide it
+// here, pointing at the namespaced modules by fully-qualified name.
+cc_defaults {
+    name: "libwifi-hal-qcom",
+    whole_static_libs: [
+        "//hardware/qcom-caf/wlan/qcwcn:libwifi-hal-qcom",
+    ],
+    shared_libs: [
+        "//hardware/qcom-caf/wlan:libcld80211",
+        "libcrypto",
+        "libpasn",
+    ],
+}
